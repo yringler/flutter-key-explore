@@ -1,9 +1,9 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 
-typedef Widget SimpleWidgetCreator();
+typedef SimpleWidgetCreator = Widget Function();
 
+/// Create two colored tiles, and a button to swap their positions.
 class PositionedTiles extends StatefulWidget {
   final SimpleWidgetCreator tilesBuilder;
 
@@ -41,6 +41,7 @@ class _PositionedTilesState extends State<PositionedTiles> {
   }
 }
 
+/// A colored square.
 class ColorfulTile extends StatelessWidget {
   final Color color;
 
@@ -53,9 +54,11 @@ class ColorfulTile extends StatelessWidget {
       );
 }
 
+/// Get a random color.
 Color randomColor() =>
     Colors.primaries[Random().nextInt(Colors.primaries.length)];
 
+/// A randomly colored square. Stateless.
 class StatelessColorfulTile extends StatelessWidget {
   final color = randomColor();
 
@@ -65,6 +68,8 @@ class StatelessColorfulTile extends StatelessWidget {
   Widget build(BuildContext context) => ColorfulTile(color: color);
 }
 
+/// A randomly colored square. Stateful - the color is created and stored in this
+/// widget's state object.
 class StatefullColorfulTile extends StatefulWidget {
   const StatefullColorfulTile({Key? key}) : super(key: key);
 
